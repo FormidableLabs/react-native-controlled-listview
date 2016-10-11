@@ -27,6 +27,7 @@
     "test": "npm run lint && npm run flow"
   },
   "dependencies": {
+    "immutable-is": "^3.7.6",
     "react-native-orientation-listener": "0.0.4"
   },
   "devDependencies": {
