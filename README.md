@@ -21,7 +21,7 @@
 
 For performance reasons, React Native [`ListView`](https://facebook.github.io/react-native/docs/listview.html) needs a  [`ListView.DataSource`](https://facebook.github.io/react-native/docs/listviewdatasource.html), so it can efficiently update itself. To benefit from these optimisations, any component wishing to render a `ListView` needs to be stateful to hold the DataSource, and faff about with lifecycle methods to update it.
 
-`react-native-controlled-listview` hides this statefulness and provides a simple `props` based way to render ListViews.
+This library hides that statefulness and provides a simple, props-based API to render ListViews.
 
 ### How-to
 
@@ -30,36 +30,72 @@ Installation:
 npm i --save react-native-controlled-listview
 ```
 
-Instead of `dataSource`, controlled `ListView` expects an array prop `items`. Optionally, you can sort the list with `sortBy` or group it into sections (iOS only) with `sectionBy`:
+Instead of `dataSource`, controlled `ListView` expects an array prop `items`. Optionally, you can sort the list with `sortBy` or group it into sections with `sectionBy`:
 
 ```diff
 - import { ListView } from 'react-native';
 + import ListView from 'react-native-controlled-listview';
-
-const renderRow = (person) => (
-  <Text style={styles.row}>{person.lastName}, {person.firstName}</Text>
-);
-
-const renderSectionHeader = (initial) => (
-  <Text style={styles.sectionHeader}>{initial}</Text>  
-);
-
-const lastNameInitial = (person) => person.lastName[0];
 
 // stateless function component
 export default (props) => (
 + <ListView
 -   dataSource=...
 +   items={props.people}
-+   sortBy='lastName'
-+   sectionBy={lastNameInitial}
-    renderRow={renderRow}
-    renderSectionHeader={renderSectionHeader}
++   sortBy={(person) => person.lastName}
++   sectionBy={(person) => person.lastName[0]}
+    renderRow={(person) => (
+      <Text style={styles.row}>{person.lastName}, {person.firstName}</Text>
+    )}
+    renderSectionHeader={(person, initial) => (
+      <Text style={styles.sectionHeader}>{initial}</Text>  
+    )}
   />
 );
 ```
 
-### Please note
+## Immutability
+
+There is one gotcha. This component **expects you to clone the `items` prop** when you want to ListView to update. If you are using Redux, this should already be the case.
+
+The `items` prop can be an instance of `Immutable.List`, or an array. If using plain arrays, never mutate it in-place, or the ListView won't update.
+
+See [`dataSourceShouldUpdate`](#datasourceshouldupdate) on how to customise the update logic.
+
+## Props
+
+##### `items : any[] | Immutable.List` **(required)**
+
+List data source.
+
+##### `sortBy : (a, b) => number | boolean`
+
+Sorts the list based on a comparator. Value can be one of type:
+ * `(a, b) => number` a standard [`Array#sort compareFunction.`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+ * `(a, b) => boolean` a shorthand comparator: if returns true, `a` comes first; if false, `b` comes first.
+
+##### `sectionBy : (a, b) => string`
+
+Groups the list based on returned value and renders section headers for each group.
+
+If using `sectionBy`, you must also provide [`renderSectionHeader`](https://facebook.github.io/react-native/docs/listview.html#rendersectionheader)
+
+##### `rowHasChanged : (prevItem, nextItem) => boolean`
+
+Passed directly to [`ListView.DataSource`](https://facebook.github.io/react-native/docs/listviewdatasource.html). constructor. Defaults to `!Immutable.is(prevItem, nextItem)`, which performs a `===` comparison for plain objects.
+
+##### `sectionHeaderHasChanged : (prevSectionData, nextSectionData) => boolean`
+
+Passed directly to [`ListView.DataSource`](https://facebook.github.io/react-native/docs/listviewdatasource.html). constructor. Defaults to `prev !== next`.
+
+##### `dataSourceShouldUpdate`
+
+Controls when the data source should be updated. The default implementation is `!Immutable.is(prevItems, nextItems)`, which performs a `===` comparison for plain arrays.
+
+##### [`...ListView.props`](https://facebook.github.io/react-native/docs/listview.html#props)
+
+All other properties, except `dataSource` are passed directly to the underlying ListView.
+
+## Please note
 
 This project is in a pre-release state. The API may be considered relatively stable, but changes may still occur.
 
