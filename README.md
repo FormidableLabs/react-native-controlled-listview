@@ -46,7 +46,7 @@ export default (props) => (
     renderRow={(person) => (
       <Text style={styles.row}>{person.lastName}, {person.firstName}</Text>
     )}
-    renderSectionHeader={(person, initial) => (
+    renderSectionHeader={(sectionData, initial) => (
       <Text style={styles.sectionHeader}>{initial}</Text>  
     )}
   />
