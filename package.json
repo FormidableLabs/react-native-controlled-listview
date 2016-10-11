@@ -24,14 +24,20 @@
   "scripts": {
     "lint": "eslint index.js lib",
     "flow": "flow check",
-    "test": "npm run lint && npm run flow"
+    "test": "jest",
+    "prerelease": "npm run lint && npm run flow && npm test"
+  },
+  "jest": {
+    "preset": "jest-react-native",
+    "testPathIgnorePatterns": ["node_modules", "__data__"]
   },
   "dependencies": {
-    "immutable-is": "^3.7.6",
-    "react-native-orientation-listener": "0.0.4"
+    "immutable-is": "^3.7.6"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.2",
+    "babel-jest": "^16.0.0",
+    "babel-preset-react-native": "^1.9.0",
     "eslint": "^2.10.2",
     "eslint-config-formidable": "^2.0.1",
     "eslint-plugin-babel": "^3.2.0",
@@ -40,7 +46,10 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-react": "^6.0.0",
     "flow-bin": "^0.32.0",
+    "jest": "^16.0.1",
+    "jest-react-native": "^16.0.0",
     "react": "15.3.2",
-    "react-native": "0.34.0"
+    "react-native": "0.34.0",
+    "react-test-renderer": "^15.3.2"
   }
 }

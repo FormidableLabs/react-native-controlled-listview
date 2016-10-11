@@ -1,0 +1,57 @@
+exports[`test sorts items when given a boolean array comparator 1`] = `
+Array [
+  Object {
+    "firstName": "Mildred",
+    "lastName": "Bonk",
+  },
+  Object {
+    "firstName": "Don",
+    "lastName": "Gately",
+  },
+  Object {
+    "firstName": "Hal",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Avril",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Orin",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Michael",
+    "lastName": "Pemulis",
+  },
+]
+`;
+
+exports[`test sorts items when given a standard array comparator 1`] = `
+Array [
+  Object {
+    "firstName": "Mildred",
+    "lastName": "Bonk",
+  },
+  Object {
+    "firstName": "Don",
+    "lastName": "Gately",
+  },
+  Object {
+    "firstName": "Orin",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Avril",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Hal",
+    "lastName": "Incandenza",
+  },
+  Object {
+    "firstName": "Michael",
+    "lastName": "Pemulis",
+  },
+]
+`;

@@ -1,0 +1,36 @@
+exports[`test groups items based on the provided function 1`] = `
+Object {
+  "B": Array [
+    Object {
+      "firstName": "Mildred",
+      "lastName": "Bonk",
+    },
+  ],
+  "G": Array [
+    Object {
+      "firstName": "Don",
+      "lastName": "Gately",
+    },
+  ],
+  "I": Array [
+    Object {
+      "firstName": "Orin",
+      "lastName": "Incandenza",
+    },
+    Object {
+      "firstName": "Avril",
+      "lastName": "Incandenza",
+    },
+    Object {
+      "firstName": "Hal",
+      "lastName": "Incandenza",
+    },
+  ],
+  "P": Array [
+    Object {
+      "firstName": "Michael",
+      "lastName": "Pemulis",
+    },
+  ],
+}
+`;
