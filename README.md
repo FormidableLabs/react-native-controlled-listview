@@ -87,9 +87,9 @@ Passed directly to [`ListView.DataSource`](https://facebook.github.io/react-nati
 
 Passed directly to [`ListView.DataSource`](https://facebook.github.io/react-native/docs/listviewdatasource.html). constructor. Defaults to `prev !== next`.
 
-##### `dataSourceShouldUpdate`
+##### `dataSourceShouldUpdate : (prevProps, nextProps) => boolean`
 
-Controls when the data source should be updated. The default implementation is `!Immutable.is(prevItems, nextItems)`, which performs a `===` comparison for plain arrays.
+Controls when the data source should be updated. The default implementation is `!Immutable.is(prevProps.items, nextProps.items)`, which performs a `===` comparison for plain arrays.
 
 ##### [`...ListView.props`](https://facebook.github.io/react-native/docs/listview.html#props)
 
