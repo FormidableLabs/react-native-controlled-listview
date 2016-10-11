@@ -29,7 +29,10 @@
   },
   "jest": {
     "preset": "jest-react-native",
-    "testPathIgnorePatterns": ["node_modules", "__data__"]
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "__data__"
+    ]
   },
   "dependencies": {
     "immutable-is": "^3.7.6"
@@ -46,8 +49,10 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-react": "^6.0.0",
     "flow-bin": "^0.32.0",
+    "immutable": "^3.8.1",
     "jest": "^16.0.1",
     "jest-react-native": "^16.0.0",
+    "lodash": "^4.16.4",
     "react": "15.3.2",
     "react-native": "0.34.0",
     "react-test-renderer": "^15.3.2"
