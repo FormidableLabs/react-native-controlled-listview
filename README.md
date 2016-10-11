@@ -59,7 +59,7 @@ There is one gotcha. This component **expects you to clone the `items` prop** wh
 
 The `items` prop can be an instance of `Immutable.List`, or an array. If using plain arrays, never mutate it in-place, or the ListView won't update.
 
-See [`dataSourceShouldUpdate`](#datasourceshouldupdate) on how to customise the update logic.
+See [`dataSourceShouldUpdate`](#datasourceshouldupdate--prevprops-nextprops--boolean) on how to customise the update logic.
 
 ## Props
 
