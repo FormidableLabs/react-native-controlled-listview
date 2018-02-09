@@ -1,6 +1,6 @@
 {
   "name": "react-native-controlled-listview",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The standard React Native ListView with a declarative API",
   "keywords": [
     "react",
